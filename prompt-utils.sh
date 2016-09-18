@@ -3,7 +3,7 @@
 #
 
 function uh() {
-  history | sed -e 's/  *$//' | sort -b -r -u | sort --key=1.8b -u -b | sort -u -b -n | cut -b8- > /tmp/history_uh.$$
+  history | sed -e 's/  *$//' | sort -b -r -n | sed -e 's/^ /-/' | sed -e 's/^- /--/' | sed -e 's/^-- /---/' | sed -e 's/^--- /----/' | sort --key=1.8 -u -b | sed -e 's/^--*//' | sort -n | cut -f3- -d\  | sed -e 's/^  *//' > /tmp/history_uh.$$
   history -c -r /tmp/history_uh.$$
   rm -f /tmp/history_uh.$$
   history
