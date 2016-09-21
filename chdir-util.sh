@@ -139,3 +139,10 @@ function xdcd()
 	fi
 	rm /tmp/xdcd$$
 }
+
+alias cd=addcd
+alias u='cd ..'
+alias uu='cd ../..'
+alias uuu='cd ../../..'
+alias uuuu='cd ../../../..'
+alias uuuuu='cd ../../../../..'
