@@ -1,10 +1,8 @@
 IFS=. read _M _t <<< $BASH_VERSION
-
 if [ ! $_M -ge 4 ]; then
 	echo "required bash version >= 4"
 	exit 1
 fi
-
 declare -A mimeTypes
 
 function read_etc_mime_types() {
@@ -25,6 +23,11 @@ function read_etc_mime_types() {
 
 read_etc_mime_types /etc/mime.types
 
+function get_mime_type() {
+  local ext=${1##*.}
+  echo ${mimeTypes[$ext]}
+}
+
 function show_mime_types() {
 	for k in ${!mimeTypes[@]}; do
 		echo $k = ${mimeTypes[$k]}
@@ -33,4 +36,6 @@ function show_mime_types() {
 
 echo ${mimeTypes[json]}
 echo ${mimeTypes[js]}
-
+get_mime_type /home/user/test.jpg
+get_mime_type /home/user/test.png
+get_mime_type /home/user/test.css
