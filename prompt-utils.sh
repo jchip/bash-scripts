@@ -8,3 +8,7 @@ function uh() {
   rm -f /tmp/history_uh.$$
   history
 }
+
+function set_prompt() {
+  PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+}
